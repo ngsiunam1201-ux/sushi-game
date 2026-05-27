@@ -6,10 +6,7 @@
     <title>蘇軾知識密室 —— 尋找東坡肉的隱世秘方</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght=400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
         body {
             font-family: 'Noto Serif TC', serif;
             background-color: #dfd8c8;
@@ -22,7 +19,6 @@
             min-height: 100vh;
             background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
         }
-
         .container {
             background-color: #faf6eb;
             border: 6px solid #5d4037;
@@ -34,26 +30,8 @@
             position: relative;
             background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
         }
-
-        h1 {
-            color: #8c1c1c;
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 5px;
-            font-size: 28px;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #795548;
-            font-size: 16px;
-            margin-top: 0;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
+        h1 { color: #8c1c1c; text-align: center; margin-top: 0; margin-bottom: 5px; font-size: 28px; font-weight: 700; letter-spacing: 2px; }
+        .subtitle { text-align: center; color: #795548; font-size: 16px; margin-top: 0; margin-bottom: 25px; }
         .progress-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -64,155 +42,31 @@
             border-radius: 4px;
             border: 1px solid #a1887f;
         }
-
-        .progress-item {
-            font-size: 13px;
-            text-align: center;
-            color: #795548;
-            font-weight: bold;
-            opacity: 0.5;
-        }
-
-        .progress-item.active {
-            color: #8c1c1c;
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        .progress-item.completed {
-            color: #1b5e20;
-            opacity: 1;
-        }
-
-        .stage {
-            display: none;
-        }
-
-        .stage.active {
-            display: block !important;
-        }
-
-        .stage-emoji {
-            text-align: center;
-            font-size: 65px;
-            margin-bottom: 25px;
-            line-height: 1;
-            padding: 15px;
-            background-color: #fdfbf7;
-            border: 1px dashed #d7ccc8;
-            border-radius: 4px;
-        }
-
-        .story-box {
-            background-color: #fdfaf1;
-            border-left: 5px solid #8c1c1c;
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 15px;
-            line-height: 1.6;
-            border-radius: 0 4px 4px 0;
-            border-top: 1px solid #efeae0;
-            border-bottom: 1px solid #efeae0;
-        }
-
-        .question-box {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #1b5e20;
-            border-bottom: 1px dashed #d7ccc8;
-            padding-bottom: 8px;
-        }
-
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .option-btn {
-            background-color: #fdfbf7;
-            border: 1px solid #d7ccc8;
-            border-radius: 4px;
-            padding: 12px 15px;
-            text-align: left;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s;
-            color: #2c1a0c;
-            font-family: 'Noto Serif TC', serif;
-            outline: none;
-        }
-
-        .option-btn:hover {
-            background-color: #efebe9;
-        }
-
-        .option-btn.selected {
-            background-color: #ffebeb !important;
-            border: 2px solid #8c1c1c !important;
-            color: #8c1c1c !important;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid #d7ccc8;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            text-align: center;
-            background-color: #fdfbf7;
-            font-family: 'Noto Serif TC', serif;
-        }
-
-        .action-btn {
-            background-color: #8c1c1c;
-            color: #faf6eb;
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            border-radius: 2px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        .action-btn:hover {
-            background-color: #5d0e0e;
-        }
-
-        .message-box {
-            margin-top: 15px;
-            min-height: 24px;
-            text-align: center;
-            font-weight: bold;
-        }
-
+        .progress-item { font-size: 13px; text-align: center; color: #795548; font-weight: bold; opacity: 0.5; }
+        .progress-item.active { color: #8c1c1c; opacity: 1; text-decoration: underline; }
+        .progress-item.completed { color: #1b5e20; opacity: 1; }
+        
+        /* 核心修正：預設不隱藏，交由 active 類別和 JS 控制，確保能撐開畫面 */
+        .stage { display: none; }
+        .stage.active { display: block !important; }
+        
+        .stage-emoji { text-align: center; font-size: 65px; margin-bottom: 25px; padding: 15px; background-color: #fdfbf7; border: 1px dashed #d7ccc8; border-radius: 4px; }
+        .story-box { background-color: #fdfaf1; border-left: 5px solid #8c1c1c; padding: 15px; margin-bottom: 20px; font-size: 15px; line-height: 1.6; }
+        .question-box { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #1b5e20; border-bottom: 1px dashed #d7ccc8; padding-bottom: 8px; }
+        .options-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .option-btn { background-color: #fdfbf7; border: 1px solid #d7ccc8; border-radius: 4px; padding: 12px 15px; text-align: left; font-size: 15px; cursor: pointer; color: #2c1a0c; font-family: 'Noto Serif TC', serif; }
+        .option-btn:hover { background-color: #efebe9; }
+        .option-btn.selected { background-color: #ffebeb !important; border: 2px solid #8c1c1c !important; color: #8c1c1c !important; font-weight: bold; }
+        input[type="text"] { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #d7ccc8; border-radius: 4px; margin-bottom: 20px; text-align: center; }
+        .action-btn { background-color: #8c1c1c; color: #faf6eb; border: none; padding: 12px 30px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .action-btn:hover { background-color: #5d0e0e; }
+        .message-box { margin-top: 15px; min-height: 24px; text-align: center; font-weight: bold; }
         .success-msg { color: #1b5e20; }
         .error-msg { color: #b71c1c; }
-
-        .fragment-highlight {
-            color: #b71c1c;
-            font-size: 18px;
-            background: #fff8e1;
-            padding: 2px 8px;
-            border: 1px solid #ffe082;
-        }
-
+        .fragment-highlight { color: #b71c1c; font-size: 18px; background: #fff8e1; padding: 2px 8px; border: 1px solid #ffe082; }
         .victory { text-align: center; }
         .victory h2 { color: #1b5e20; font-size: 28px; }
-        .secret-scroll {
-            background-color: #fffee0;
-            border: 2px dashed #fbc02d;
-            padding: 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            line-height: 1.8;
-            text-align: left;
-        }
+        .secret-scroll { background-color: #fffee0; border: 2px dashed #fbc02d; padding: 20px; margin: 20px 0; text-align: left; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -222,13 +76,13 @@
     <div class="subtitle">—— 尋找東坡肉的隱世秘方 ——</div>
 
     <div class="progress-container">
-        <span id="p1" class="progress-item active">第一關：饕客</span>
+        <span id="p1" class="progress-item">第一關：饕客</span>
         <span id="p2" class="progress-item">第二關：赤壁</span>
         <span id="p3" class="progress-item">第三關：解密</span>
         <span id="p4" class="progress-item">終局：秘方</span>
     </div>
 
-    <div id="stage1" class="stage active">
+    <div id="stage1" class="stage">
         <div class="stage-emoji">🥩👨‍🍳🍲</div>
         <div class="story-box">
             <strong>時空背景：黃州（西元1080年）</strong><br>
@@ -286,7 +140,7 @@
         <p>你已完美通過蘇東坡的文學與美食考驗！</p>
         <div class="secret-scroll">
             <strong>📋【正宗東坡肉心法秘笈】📋</strong><br><br>
-            1. **選材**：肥瘦相間之新鮮五層三層肉（五五花肉）。<br>
+            1. **選材**：肥瘦相間之新鮮五層三層肉（五花肉）。<br>
             2. **火候**：<strong>「慢著火，少著水」</strong>。以微火慢燉，讓油脂緩慢融化而不柴。<br>
             3. **意境**：正如蘇軾一生處境，雖經「烏台詩案」被貶黃州，卻能從美食與山水中昇華，化落寞為曠達。<br>
             4. **精神**：物與我皆無盡，心寬則百味皆美。
@@ -301,17 +155,10 @@
     const fragments = [];
     let finalAttempts = 0;
 
-    // 確保頁面載入時，第一關能百分之百正確顯示
-    window.onload = function() {
-        goToStage(1);
-    };
-
     function selectOption(stage, choice, element) {
         const stageContainer = element.closest('.options-container');
         const buttons = stageContainer.querySelectorAll('.option-btn');
-        
         buttons.forEach(btn => btn.classList.remove('selected'));
-        
         element.classList.add('selected');
         currentChoices[stage] = choice;
     }
@@ -322,7 +169,6 @@
             msg.innerHTML = "<span class='error-msg'>⚠️ 請先選取一個答案！</span>";
             return;
         }
-        
         if (currentChoices[stage] === correct) {
             fragments[stage-1] = fragment;
             msg.innerHTML = `<span class='success-msg'>🎉 正確！獲得秘方碎片：<span class='fragment-highlight'>【${fragment}】</span><br><button class='action-btn' style='background-color:#1b5e20; font-size:13px; margin-top:10px;' onclick='goToStage(${stage + 1})'>下一關 ➡️</button></span>`;
@@ -335,15 +181,12 @@
     function submitFinal() {
         const input = document.getElementById('finalInput').value.trim();
         const msg = document.getElementById('msg3');
-        
         if (input === '慢燉') {
             document.getElementById('p3').classList.add('completed');
             document.getElementById('p4').classList.add('completed');
             goToStage('victory');
         } else {
             finalAttempts++;
-            
-            // 防卡關：答錯 3 次或以上時，直接給予完整答案
             if (finalAttempts >= 3) {
                 msg.innerHTML = "<span class='error-msg'>💡 遇到瓶頸了嗎？沒關係！正確的通關秘語是：<br><span class='fragment-highlight' style='display:inline-block; margin-top:5px;'>慢燉</span><br>請直接複製並輸入上方欄位通關！</span>";
             } else {
@@ -353,7 +196,6 @@
     }
 
     function goToStage(target) {
-        // 先將所有的關卡隱藏
         document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.progress-item').forEach(i => i.classList.remove('active'));
         
@@ -362,11 +204,13 @@
         } else {
             const activeStage = document.getElementById('stage' + target);
             const activeProgress = document.getElementById('p' + target);
-            
             if (activeStage) activeStage.classList.add('active');
             if (activeProgress) activeProgress.classList.add('active');
         }
     }
+
+    // 終極防錯：不依賴任何外部事件，腳本載入完畢直接強制初始化第一關
+    goToStage(1);
 </script>
 
 </body>
