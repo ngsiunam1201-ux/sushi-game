@@ -3,70 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蘇軾知識密室 —— 尋找東坡肉的隱世秘方</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght=400;700&display=swap" rel="stylesheet">
+    <title>蘇軾知識密室｜尋找東坡肉秘方</title>
     <style>
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Noto Serif TC', serif;
-            background-color: #dfd8c8;
-            color: #2c1a0c;
+            font-family: 'Noto Serif TC', 'Microsoft JhengHei', serif;
+            background-color: #f5f2eb;
+            color: #3e2723;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
         }
         .container {
-            background-color: #faf6eb;
-            border: 6px solid #5d4037;
-            border-radius: 4px;
+            background-color: #ffffff;
+            border: 2px solid #8d6e63;
+            border-radius: 16px;
             padding: 30px;
-            max-width: 750px;
+            max-width: 600px;
             width: 100%;
-            box-shadow: 0 15px 35px rgba(44, 26, 12, 0.3);
+            box-shadow: 0 10px 25px rgba(141, 110, 99, 0.2);
             position: relative;
-            background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
         }
-        h1 { color: #8c1c1c; text-align: center; margin-top: 0; margin-bottom: 5px; font-size: 28px; font-weight: 700; letter-spacing: 2px; }
-        .subtitle { text-align: center; color: #795548; font-size: 16px; margin-top: 0; margin-bottom: 25px; }
-        .progress-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+        h1 {
+            color: #b71c1c;
+            text-align: center;
+            margin-top: 0;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #5d4037;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 25px;
-            background-color: #d7ccc8;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #a1887f;
+            background-color: #efebe9;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
         }
-        .progress-item { font-size: 13px; text-align: center; color: #795548; font-weight: bold; opacity: 0.5; }
-        .progress-item.active { color: #8c1c1c; opacity: 1; text-decoration: underline; }
-        .progress-item.completed { color: #1b5e20; opacity: 1; }
+        .progress-item {
+            color: #bcaaa4;
+        }
+        .progress-item.active {
+            color: #b71c1c;
+        }
+        .progress-item.completed {
+            color: #2e7d32;
+        }
+        .stage {
+            display: none;
+        }
+        .stage.active {
+            display: block;
+        }
+        .story-box {
+            background-color: #fdfbf7;
+            border-left: 4px solid #b71c1c;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+            border-radius: 0 8px 8px 0;
+        }
+        .question-box {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1b5e20;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            background-color: #fff;
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #3e2723;
+        }
+        .option-btn:hover {
+            background-color: #f5f5f5;
+            border-color: #a1887f;
+        }
+        .option-btn.selected {
+            background-color: #ffebeb;
+            border-color: #b71c1c;
+            color: #b71c1c;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #b71c1c;
+            box-shadow: 0 0 5px rgba(183, 28, 28, 0.2);
+        }
+        .btn-group {
+            text-align: center;
+        }
+        .action-btn {
+            background-color: #b71c1c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .action-btn:hover {
+            background-color: #800000;
+        }
+        .message-box {
+            margin-top: 15px;
+            min-height: 24px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .success-msg { color: #2e7d32; }
+        .error-msg { color: #c62828; }
         
-        /* 核心修正：預設不隱藏，交由 active 類別和 JS 控制，確保能撐開畫面 */
-        .stage { display: none; }
-        .stage.active { display: block !important; }
+        .fragment-highlight {
+            color: #d84315;
+            font-size: 18px;
+            font-weight: bold;
+        }
         
-        .stage-emoji { text-align: center; font-size: 65px; margin-bottom: 25px; padding: 15px; background-color: #fdfbf7; border: 1px dashed #d7ccc8; border-radius: 4px; }
-        .story-box { background-color: #fdfaf1; border-left: 5px solid #8c1c1c; padding: 15px; margin-bottom: 20px; font-size: 15px; line-height: 1.6; }
-        .question-box { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #1b5e20; border-bottom: 1px dashed #d7ccc8; padding-bottom: 8px; }
-        .options-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .option-btn { background-color: #fdfbf7; border: 1px solid #d7ccc8; border-radius: 4px; padding: 12px 15px; text-align: left; font-size: 15px; cursor: pointer; color: #2c1a0c; font-family: 'Noto Serif TC', serif; }
-        .option-btn:hover { background-color: #efebe9; }
-        .option-btn.selected { background-color: #ffebeb !important; border: 2px solid #8c1c1c !important; color: #8c1c1c !important; font-weight: bold; }
-        input[type="text"] { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #d7ccc8; border-radius: 4px; margin-bottom: 20px; text-align: center; }
-        .action-btn { background-color: #8c1c1c; color: #faf6eb; border: none; padding: 12px 30px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        .action-btn:hover { background-color: #5d0e0e; }
-        .message-box { margin-top: 15px; min-height: 24px; text-align: center; font-weight: bold; }
-        .success-msg { color: #1b5e20; }
-        .error-msg { color: #b71c1c; }
-        .fragment-highlight { color: #b71c1c; font-size: 18px; background: #fff8e1; padding: 2px 8px; border: 1px solid #ffe082; }
-        .victory { text-align: center; }
-        .victory h2 { color: #1b5e20; font-size: 28px; }
-        .secret-scroll { background-color: #fffee0; border: 2px dashed #fbc02d; padding: 20px; margin: 20px 0; text-align: left; line-height: 1.8; }
+        .victory {
+            text-align: center;
+        }
+        .victory h2 {
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .secret-scroll {
+            background-color: #fffde7;
+            border: 2px dashed #fbc02d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -75,18 +185,17 @@
     <h1>📜 蘇軾知識密室</h1>
     <div class="subtitle">—— 尋找東坡肉的隱世秘方 ——</div>
 
-    <div class="progress-container">
-        <span id="p1" class="progress-item">第一關：饕客</span>
+    <div class="progress-bar">
+        <span id="p1" class="progress-item active">第一關：饕客</span>
         <span id="p2" class="progress-item">第二關：赤壁</span>
         <span id="p3" class="progress-item">第三關：解密</span>
         <span id="p4" class="progress-item">終局：秘方</span>
     </div>
 
-    <div id="stage1" class="stage">
-        <div class="stage-emoji">🥩👨‍🍳🍲</div>
+    <div id="stage1" class="stage active">
         <div class="story-box">
             <strong>時空背景：黃州（西元1080年）</strong><br>
-            你穿越到了北宋的黃州，聞到一陣濃郁的肉香。此時蘇東坡正坐在灶前一邊搖著扇子、一邊吟詩。他看你衣著奇特，便笑道：「來者是客！老夫正巧在研發一道豬肉料理。你若能選出老夫慢燉此肉的心法，這第一枚密碼碎片就贈與你！」
+            你穿越到了北宋的黃州，聞到一陣濃郁的肉香。此時蘇東坡正坐在灶前一邊搖扇子、一邊吟詩。他看你衣著奇特，便笑道：「來者是客！老夫正巧在研發一道豬肉料理。你若能選出老夫慢燉此肉的心法，這第一枚密碼碎片就贈與你！」
         </div>
         <div class="question-box">
             問題一：蘇軾在《食豬肉》詩中，提到烹飪此肉的核心火候與水量秘訣為何？
@@ -94,123 +203,137 @@
         <div class="options-container">
             <button class="option-btn" onclick="selectOption(1, 'A', this)">A. 快著火，多著水，火候足時他自美</button>
             <button class="option-btn" onclick="selectOption(1, 'B', this)">B. 慢著火，少著水，火候足時他自美</button>
-            <button class="option-btn" onclick="selectOption(1, 'C', this)">C. 慢著火，多著水，水乾自熟味最濃</button>
-            <button class="option-btn" onclick="selectOption(1, 'D', this)">D. 無火無水，置於烈日下自然風乾</button>
+            <button class="option-btn" onclick="selectOption(1, 'C', this)">C. 慢著火，多著油，急急下鍋味最美</button>
+            <button class="option-btn" onclick="selectOption(1, 'D', this)">D. 不著火，不下水，生食方能知其原味</button>
         </div>
-        <div class="btn-group" style="text-align:center;"><button class="action-btn" onclick="submitStage(1, 'B', '慢')">提交 🗝</button></div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage1()">提交答案 🗝</button>
+        </div>
         <div id="msg1" class="message-box"></div>
     </div>
 
     <div id="stage2" class="stage">
-        <div class="stage-emoji">🌊🦅🛶</div>
         <div class="story-box">
-            <strong>時空背景：赤壁江畔</strong><br>
-            東坡先生拂袖大笑，帶你登上一葉扁舟。江水滾滾，拍打著岸邊的亂石。他指著大江嘆道：「江山如畫，一時多少豪傑！老夫在此觀赤壁、思周郎，你若能道出老夫對宇宙與生命交織的感悟，第二枚碎片便是你的了。」
+            <strong>時空背景：黃州赤壁（西元1082年）</strong><br>
+            江風浩蕩，月色如銀。蘇東坡邀你共乘小舟，泛游於赤壁之下。他舉酒酬客，高歌起舞，突然指著滾滾長江問道：「大江東去，浪淘盡，千古風流人物。人生如夢，你可知老夫接下來要用哪一尊酒，來祭拜這江上的明月？」
         </div>
         <div class="question-box">
-            問題二：在《赤壁賦》中，蘇軾藉由「水與月」闡述了什麼樣的人生哲理？
+            問題二：請選出《念奴嬌·赤壁懷古》最後一句的正確經典名句：
         </div>
         <div class="options-container">
-            <button class="option-btn" onclick="selectOption(2, 'A', this)">A. 生命如長江般一去不返，人應當徹底消極與絕望</button>
-            <button class="option-btn" onclick="selectOption(2, 'B', this)">B. 月有陰晴圓缺，說明人世間的政治鬥爭極其殘酷</button>
-            <button class="option-btn" onclick="selectOption(2, 'C', this)">C. 自其變者而觀之，則天地曾不能以一瞬；自其不變者而觀之，則物與我皆無盡也</button>
-            <button class="option-btn" onclick="selectOption(2, 'D', this)">D. 抓緊機會及時行樂，功名利祿才是人生的終極追求</button>
+            <button class="option-btn" onclick="selectOption(2, 'A', this)">A. 人生如夢，一樽還酹江月</button>
+            <button class="option-btn" onclick="selectOption(2, 'B', this)">B. 舉杯邀明月，對影成三人</button>
+            <button class="option-btn" onclick="selectOption(2, 'C', this)">C. 明月幾時有，把酒問青天</button>
+            <button class="option-btn" onclick="selectOption(2, 'D', this)">D. 醉翁之意不在酒，在乎山水之間也</button>
         </div>
-        <div class="btn-group" style="text-align:center;"><button class="action-btn" onclick="submitStage(2, 'C', '燉')">提交 🗝</button></div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage2()">提交答案 🗝</button>
+        </div>
         <div id="msg2" class="message-box"></div>
     </div>
 
     <div id="stage3" class="stage">
-        <div class="stage-emoji">🔐📜🔍</div>
         <div class="story-box">
-            <strong>【終極合龍】</strong><br>
-            蘇東坡撫掌大讚：「善哉！你已有資格獲得老夫的祕方。」他遞給你一張古老卷軸，上面刻著前兩關收集到的漢字密語。現在，請把這兩個碎片按先後順序拼成一個終極密語，解鎖隱世秘方！
+            <strong>時空背景：終極解密密室</strong><br>
+            蘇東坡哈哈大笑，化作一陣清風消失了。你眼前出現了一道沉重的青銅大門，上面刻著一個密碼鎖。旁邊留有一張宣紙，寫著：<br>
+            <em>「欲開此門，必先『物我兩忘』。請將你前兩關獲得的密碼碎片【組合在一起】，輸入下方，即可解開終極封印，得見本草秘方。」</em>
         </div>
         <div class="question-box">
-            問題三：請輸入完整的 2 字通關密語（將前兩關獲得的漢字按順序組合）：
+            問題三：請輸入前兩關獲得的完整密碼語（共四個字，也就是老夫的名字）：
         </div>
-        <input type="text" id="finalInput" placeholder="請在此輸入 2 字密碼">
-        <div class="btn-group" style="text-align:center;"><button class="action-btn" onclick="submitFinal()">解鎖秘方 🔓</button></div>
+        <input type="text" id="finalInput" placeholder="請在此輸入四字密碼語（提示：蘇東坡的別稱）">
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage3()">解開大門封印 🔓</button>
+        </div>
         <div id="msg3" class="message-box"></div>
     </div>
 
-    <div id="victory" class="stage victory">
-        <div class="stage-emoji">🏆🐖✨</div>
-        <h2>🎉 成功解鎖：東坡肉隱世秘方！ 🎉</h2>
-        <p>你已完美通過蘇東坡的文學與美食考驗！</p>
+    <div id="stage4" class="stage victory">
+        <h2>🎉 挑戰成功！ 🎉</h2>
+        <p>你用智慧與文采通過了蘇東坡的試煉，密室大門轟然打開！</p>
+        
         <div class="secret-scroll">
-            <strong>📋【正宗東坡肉心法秘笈】📋</strong><br><br>
-            1. **選材**：肥瘦相間之新鮮五層三層肉（五花肉）。<br>
-            2. **火候**：<strong>「慢著火，少著水」</strong>。以微火慢燉，讓油脂緩慢融化而不柴。<br>
-            3. **意境**：正如蘇軾一生處境，雖經「烏台詩案」被貶黃州，卻能從美食與山水中昇華，化落寞為曠達。<br>
-            4. **精神**：物與我皆無盡，心寬則百味皆美。
+            <strong>🏮【正宗東坡肉秘方寶卷】🏮</strong><br>
+            「黃州好豬肉，價賤如泥土。富者不肯吃，貧者不解煮。<strong>慢著火，少著水</strong>，火候足時他自美。每日起來打一碗，飽得自家君莫管。」<br><br>
+            <em>秘訣提示：選用肥瘦相間之五花肉，以紹興酒、老抽、冰糖打底。慢火細燉兩個時辰，神仙聞了也流口水！</em>
         </div>
-        <p style="font-size: 14px; color: #795548;">🏆 秘方已傳授與你，祝你在文學與生活中皆能展現如東坡先生般的豁達胸襟！</p>
-        <div class="btn-group" style="text-align:center;"><button class="action-btn" style="background-color: #1b5e20;" onclick="location.reload()">重新挑戰 🔄</button></div>
+        
+        <p style="font-size: 14px; color: #795548;">🏆 請將此畫面「截圖」，傳給你的好友或活動主持人，證明你已獲得詩聖的傳承！</p>
+        <div class="btn-group">
+            <button class="action-btn" style="background-color: #2e7d32;" onclick="location.reload()">重新挑戰 🔄</button>
+        </div>
     </div>
+
 </div>
 
 <script>
-    let currentChoices = {};
-    const fragments = [];
-    let finalAttempts = 0;
-
+    let selectedStage1 = '';
+    let selectedStage2 = '';
+    
     function selectOption(stage, choice, element) {
-        const stageContainer = element.closest('.options-container');
-        const buttons = stageContainer.querySelectorAll('.option-btn');
+        const buttons = element.parentElement.querySelectorAll('.option-btn');
         buttons.forEach(btn => btn.classList.remove('selected'));
         element.classList.add('selected');
-        currentChoices[stage] = choice;
+        
+        if (stage === 1) selectedStage1 = choice;
+        if (stage === 2) selectedStage2 = choice;
     }
 
-    function submitStage(stage, correct, fragment) {
-        const msg = document.getElementById('msg' + stage);
-        if (!currentChoices[stage]) {
-            msg.innerHTML = "<span class='error-msg'>⚠️ 請先選取一個答案！</span>";
+    function submitStage1() {
+        const msg = document.getElementById('msg1');
+        if (!selectedStage1) {
+            msg.innerHTML = "<span class='error-msg'>⚠️ 請先選擇一個答案！</span>";
             return;
         }
-        if (currentChoices[stage] === correct) {
-            fragments[stage-1] = fragment;
-            msg.innerHTML = `<span class='success-msg'>🎉 正確！獲得秘方碎片：<span class='fragment-highlight'>【${fragment}】</span><br><button class='action-btn' style='background-color:#1b5e20; font-size:13px; margin-top:10px;' onclick='goToStage(${stage + 1})'>下一關 ➡️</button></span>`;
-            document.getElementById('p' + stage).classList.add('completed');
+        
+        if (selectedStage1 === 'B') {
+            msg.innerHTML = "<span class='success-msg'>🎉 答對了！東坡大讚你懂吃！<br>獲得第一枚密碼碎片：<span class='fragment-highlight'>【東】</span><br><br><button class='action-btn' style='background-color:#2e7d32; font-size:14px; padding:8px 20px;' onclick='goToStage(2)'>進入下一關 ➡️</button></span>";
+            document.getElementById('p1').classList.add('completed');
         } else {
-            msg.innerHTML = "<span class='error-msg'>❌ 答案不對喔，再仔細推敲一下蘇東坡的心境吧！</span>";
+            msg.innerHTML = "<span class='error-msg'>❌ 唔……火候不對，肉要嘛焦了要嘛沒熟。再想想！（提示：慢工出細活，水不能太多）</span>";
         }
     }
 
-    function submitFinal() {
+    function submitStage2() {
+        const msg = document.getElementById('msg2');
+        if (!selectedStage2) {
+            msg.innerHTML = "<span class='error-msg'>⚠️ 請先選擇一個答案！</span>";
+            return;
+        }
+        
+        if (selectedStage2 === 'A') {
+            msg.innerHTML = "<span class='success-msg'>🎉 謔！江風朗朗，正是此句！<br>獲得第二枚密碼碎片：<span class='fragment-highlight'>【坡】</span><br><br><button class='action-btn' style='background-color:#2e7d32; font-size:14px; padding:8px 20px;' onclick='goToStage(3)'>前往終極解密 ➡️</button></span>";
+            document.getElementById('p2').classList.add('completed');
+        } else {
+            msg.innerHTML = "<span class='error-msg'>❌ 節奏不對！這首詞的豪放與悲涼，結尾應是將情感寄託於江月。再試一次！</span>";
+        }
+    }
+
+    function submitStage3() {
         const input = document.getElementById('finalInput').value.trim();
         const msg = document.getElementById('msg3');
-        if (input === '慢燉') {
+        
+        // Accepts both simplified/traditional combinations just in case
+        if (input === '蘇東坡' || input === '苏东坡' || input === '東坡' || input === '东坡') {
             document.getElementById('p3').classList.add('completed');
-            document.getElementById('p4').classList.add('completed');
-            goToStage('victory');
+            goToStage(4);
         } else {
-            finalAttempts++;
-            if (finalAttempts >= 3) {
-                msg.innerHTML = "<span class='error-msg'>💡 遇到瓶頸了嗎？沒關係！正確的通關秘語是：<br><span class='fragment-highlight' style='display:inline-block; margin-top:5px;'>慢燉</span><br>請直接複製並輸入上方欄位通關！</span>";
-            } else {
-                msg.innerHTML = `<span class='error-msg'>❌ 秘語不對喔！(已嘗試 ${finalAttempts}/3 次)<br>提示：將前兩關得到的漢字按順序組合在一起（兩個字）。</span>`;
+            msg.innerHTML = "<span class='error-msg'>❌ 密碼錯誤！大門紋絲不動。提示：第一關碎片是【東】，第二關是【坡】，合起來的名字是？</span>";
+        }
+    }
+
+    function goToStage(stageNum) {
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById('stage' + i).classList.remove('active');
+            if (document.getElementById('p' + i)) {
+                document.getElementById('p' + i).classList.remove('active');
             }
         }
-    }
-
-    function goToStage(target) {
-        document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.progress-item').forEach(i => i.classList.remove('active'));
-        
-        if (target === 'victory') {
-            document.getElementById('victory').classList.add('active');
-        } else {
-            const activeStage = document.getElementById('stage' + target);
-            const activeProgress = document.getElementById('p' + target);
-            if (activeStage) activeStage.classList.add('active');
-            if (activeProgress) activeProgress.classList.add('active');
+        document.getElementById('stage' + stageNum).classList.add('active');
+        if (document.getElementById('p' + stageNum)) {
+            document.getElementById('p' + stageNum).classList.add('active');
         }
     }
-
-    // 終極防錯：不依賴任何外部事件，腳本載入完畢直接強制初始化第一關
-    goToStage(1);
 </script>
 
 </body>
