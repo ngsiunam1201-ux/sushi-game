@@ -166,4 +166,219 @@
             background-color: #8c1c1c;
             color: #faf6eb;
             border: none;
-            padding: 1
+            padding: 14px 35px;
+            font-size: 17px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            font-family: 'Noto Serif TC', serif;
+            letter-spacing: 1px;
+        }
+        .action-btn:hover {
+            background-color: #5d0e0e;
+        }
+        .message-box {
+            margin-top: 18px;
+            min-height: 26px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .success-msg { color: #1b5e20; }
+        .error-msg { color: #b71c1c; }
+        
+        .fragment-highlight {
+            color: #b71c1c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .victory {
+            text-align: center;
+        }
+        .victory h2 {
+            color: #1b5e20;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        .secret-scroll {
+            /* Ancient scroll with reward */
+            background-color: #fffee0;
+            border: 2px dashed #fbc02d;
+            background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 4px;
+            font-size: 17px;
+            line-height: 1.9;
+            text-align: left;
+            box-shadow: inset 0 0 15px rgba(251, 192, 45, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📜 蘇軾知識密室</h1>
+    <div class="subtitle">—— 尋找東坡肉的隱世秘方 ——</div>
+
+    <div class="progress-bar">
+        <span id="p1" class="progress-item active">第一關：饕客</span>
+        <span id="p2" class="progress-item">第二關：赤壁</span>
+        <span id="p3" class="progress-item">第三關：解密</span>
+        <span id="p4" class="progress-item">終局：秘方</span>
+    </div>
+
+    <div id="stage1" class="stage active">
+        <img src="https://i.imgur.com/gK1kFpD.png" alt="黃州東坡灶前" class="stage-theme-img" width="300">
+        <div class="story-box">
+            <strong>時空背景：黃州（西元1080年）</strong><br>
+            你穿越到了北宋的黃州，聞到一陣濃郁的肉香。此時蘇東坡正坐在灶前一邊搖扇子、一邊吟詩。他看你衣著奇特，便笑道：「來者是客！老夫正巧在研發一道豬肉料理。你若能選出老夫慢燉此肉的心法，這第一枚密碼碎片就贈與你！」
+        </div>
+        <div class="question-box">
+            問題一：蘇軾在《食豬肉》詩中，提到烹飪此肉的核心火候與水量秘訣為何？
+        </div>
+        <div class="options-container">
+            <button class="option-btn" onclick="selectOption(1, 'A', this)">A. 快著火，多著水，火候足時他自美</button>
+            <button class="option-btn" onclick="selectOption(1, 'B', this)">B. 慢著火，少著水，火候足時他自美</button>
+            <button class="option-btn" onclick="selectOption(1, 'C', this)">C. 慢著火，多著油，急急下鍋味最美</button>
+            <button class="option-btn" onclick="selectOption(1, 'D', this)">D. 不著火，不下水，生食方能知其原味</button>
+        </div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage1()">提交答案 🗝</button>
+        </div>
+        <div id="msg1" class="message-box"></div>
+    </div>
+
+    <div id="stage2" class="stage">
+        <img src="https://i.imgur.com/e8iYyN2.png" alt="黃州赤壁江景" class="stage-theme-img" width="400">
+        <div class="story-box">
+            <strong>時空背景：黃州赤壁（西元1082年）</strong><br>
+            江風浩蕩，月色如銀。蘇東坡邀你共乘小舟，泛游於赤壁之下。他舉酒酬客，高歌起舞，突然指著滾滾長江問道：「大江東去，浪淘盡，千古風流人物。人生如夢，你可知老夫接下來要用哪一尊酒，來祭拜這江上的明月？」
+        </div>
+        <div class="question-box">
+            問題二：請選出《念奴嬌·赤壁懷古》最後一句的正確經典名句：
+        </div>
+        <div class="options-container">
+            <button class="option-btn" onclick="selectOption(2, 'A', this)">A. 人生如夢，一樽還酹江月</button>
+            <button class="option-btn" onclick="selectOption(2, 'B', this)">B. 舉杯邀明月，對影成三人</button>
+            <button class="option-btn" onclick="selectOption(2, 'C', this)">C. 明月幾時有，把酒問青天</button>
+            <button class="option-btn" onclick="selectOption(2, 'D', this)">D. 醉翁之意不在酒，在乎山水之間也</button>
+        </div>
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage2()">提交答案 🗝</button>
+        </div>
+        <div id="msg2" class="message-box"></div>
+    </div>
+
+    <div id="stage3" class="stage">
+        <img src="https://i.imgur.com/fMvS9I9.png" alt="終極青銅密碼門" class="stage-theme-img" width="250">
+        <div class="story-box">
+            <strong>時空背景：終極解密密室</strong><br>
+            蘇東坡哈哈大笑，化作一陣清風消失了。你眼前出現了一道沉重的青銅大門，上面刻著一個密碼鎖。旁邊留有一張宣紙，寫著：<br>
+            <em>「欲開此門，必先『物我兩忘』。請將你前兩關獲得的密碼碎片【組合在一起】，輸入下方，即可解開終極封印，得見本草秘方。」</em>
+        </div>
+        <div class="question-box">
+            問題三：請輸入前兩關獲得的完整密碼語（共四個字，也就是老夫的名字）：
+        </div>
+        <input type="text" id="finalInput" placeholder="請在此輸入四字密碼語（提示：蘇東坡的別稱）">
+        <div class="btn-group">
+            <button class="action-btn" onclick="submitStage3()">解開大門封印 🔓</button>
+        </div>
+        <div id="msg3" class="message-box"></div>
+    </div>
+
+    <div id="stage4" class="stage victory">
+        <h2>🎉 挑戰成功！ 🎉</h2>
+        
+        <img src="https://i.imgur.com/RreC9pY.png" alt="完成的正宗東坡肉" class="stage-theme-img" width="220">
+
+        <p>你用智慧與文采通過了蘇東坡的試煉，密室大門轟然打開！</p>
+        
+        <div class="secret-scroll">
+            <strong>🏮【正宗東坡肉秘方寶卷】🏮</strong><br>
+            「黃州好豬肉，價賤如泥土。富者不肯吃，貧者不解煮。<strong>慢著火，少著水</strong>，火候足時他自美。每日起來打一碗，飽得自家君莫管。」<br><br>
+            <em>秘訣提示：選用肥瘦相間之五花肉，以紹興酒、老抽、冰糖打底。慢火細燉兩個時辰，神仙聞了也流口水！</em>
+        </div>
+        
+        <p style="font-size: 14px; color: #795548;">🏆 請將此畫面「截圖」，傳給你的好友或活動主持人，證明你已獲得詩聖的傳承！</p>
+        <div class="btn-group">
+            <button class="action-btn" style="background-color: #1b5e20;" onclick="location.reload()">重新挑戰 🔄</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let selectedStage1 = '';
+    let selectedStage2 = '';
+    
+    function selectOption(stage, choice, element) {
+        const buttons = element.parentElement.querySelectorAll('.option-btn');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        element.classList.add('selected');
+        
+        if (stage === 1) selectedStage1 = choice;
+        if (stage === 2) selectedStage2 = choice;
+    }
+
+    function submitStage1() {
+        const msg = document.getElementById('msg1');
+        if (!selectedStage1) {
+            msg.innerHTML = "<span class='error-msg'>⚠️ 請先選擇一個答案！</span>";
+            return;
+        }
+        
+        if (selectedStage1 === 'B') {
+            msg.innerHTML = "<span class='success-msg'>🎉 答對了！東坡大讚你懂吃！<br>獲得第一枚密碼碎片：<span class='fragment-highlight'>【東】</span><br><br><button class='action-btn' style='background-color:#1b5e20; font-size:14px; padding:8px 20px;' onclick='goToStage(2)'>進入下一關 ➡️</button></span>";
+            document.getElementById('p1').classList.add('completed');
+        } else {
+            msg.innerHTML = "<span class='error-msg'>❌ 唔……火候不對，肉要嘛焦了要嘛沒熟。再想想！（提示：慢工出細活，水不能太多）</span>";
+        }
+    }
+
+    function submitStage2() {
+        const msg = document.getElementById('msg2');
+        if (!selectedStage2) {
+            msg.innerHTML = "<span class='error-msg'>⚠️ 請先選擇一個答案！</span>";
+            return;
+        }
+        
+        if (selectedStage2 === 'A') {
+            msg.innerHTML = "<span class='success-msg'>🎉 謔！江風朗朗，正是此句！<br>獲得第二枚密碼碎片：<span class='fragment-highlight'>【坡】</span><br><br><button class='action-btn' style='background-color:#1b5e20; font-size:14px; padding:8px 20px;' onclick='goToStage(3)'>前往終極解密 ➡️</button></span>";
+            document.getElementById('p2').classList.add('completed');
+        } else {
+            msg.innerHTML = "<span class='error-msg'>❌ 節奏不對！這首詞的豪放與悲涼，結尾應是將情感寄託於江月。再試一次！</span>";
+        }
+    }
+
+    function submitStage3() {
+        const input = document.getElementById('finalInput').value.trim();
+        const msg = document.getElementById('msg3');
+        
+        if (input === '蘇東坡' || input === '苏东坡' || input === '東坡' || input === '东坡') {
+            document.getElementById('p3').classList.add('completed');
+            goToStage(4);
+        } else {
+            msg.innerHTML = "<span class='error-msg'>❌ 密碼錯誤！大門紋絲不動。提示：第一關碎片是【東】，第二關是【坡】，合起來的名字是？</span>";
+        }
+    }
+
+    function goToStage(stageNum) {
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById('stage' + i).classList.remove('active');
+            if (document.getElementById('p' + i)) {
+                document.getElementById('p' + i).classList.remove('active');
+            }
+        }
+        document.getElementById('stage' + stageNum).classList.add('active');
+        if (document.getElementById('p' + stageNum)) {
+            document.getElementById('p' + stageNum).classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
