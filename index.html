@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蘇軾知識密室｜尋找東坡肉秘方</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background-color: #f4eae1;
+            color: #3e2723;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid #8d6e63;
+        }
+        h1 { color: #d84315; margin-bottom: 10px; }
+        h2 { color: #5d4037; }
+        .hint { background-color: #fff8e1; padding: 10px; border-left: 5px solid #ffb300; margin: 15px 0; text-align: left; font-size: 14px; }
+        .question { font-size: 18px; font-weight: bold; margin: 20px 0; color: #1b5e20; }
+        input[type="text"] { width: 80%; padding: 10px; font-size: 16px; border: 1px solid #bcaaa4; border-radius: 6px; margin-bottom: 15px; text-align: center; }
+        button { background-color: #d84315; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #bf360c; }
+        .result { margin-top: 20px; font-weight: bold; font-size: 18px; }
+        .success { color: #2e7d32; }
+        .error { color: #c62828; }
+        .next-btn { background-color: #2e7d32; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📜 蘇軾知識密室</h1>
+    <h3>第一關：饕客的考驗</h3>
+    <hr>
+    
+    <div class="hint">
+        <strong>💡 預習小提示：</strong><br>
+        蘇東坡在黃州時，因為當地豬肉極便宜，他便研究出獨門燉肉法，並寫下《食豬肉》詩：<br>
+        <em>「黃州好豬肉，價賤如泥土... 🥷 填空處一 🥷，🥷 填空處二 🥷，火候足時他自美。」</em>
+    </div>
+
+    <div class="question">
+        請填出這首詩中，燉煮東坡肉的核心秘訣：<br>
+        「_______，_______」
+    </div>
+
+    <input type="text" id="answerInput" placeholder="請輸入答案（例如：少放鹽，多放糖）">
+    <br>
+    <button onclick="checkAnswer()">提交答案 🗝️</button>
+    
+    <div id="resultMessage" class="result"></div>
+    <button id="nextButton" class="button next-btn" onclick="nextStage()">前往第二關 ➡️</button>
+</div>
+
+<script>
+    function checkAnswer() {
+        // 取得使用者輸入的文字，並拔掉空格
+        const userAnswer = document.getElementById("answerInput").value.replace(/\s+/g, "");
+        const resultMessage = document.getElementById("resultMessage");
+        const nextButton = document.getElementById("nextButton");
+
+        // 正確答案
+        const correctAnswer = "慢著火，少著水";
+
+        if (userAnswer === correctAnswer) {
+            resultMessage.innerHTML = "<span class='success'>🎉 答對了！大文豪露出了讚許的微笑。<br>獲得第一枚密碼碎片：【東】</span>";
+            nextButton.style.display = "inline-block"; // 顯示前往下一關的按鈕
+        } else {
+            resultMessage.innerHTML = "<span class='error'>❌ 哎呀，火候不對！肉都燒焦了。再想想看！（提示：答案為六個字，中間有逗號）</span>";
+            nextButton.style.display = "none";
+        }
+    }
+
+    function nextStage() {
+        alert("恭喜通過第一關！接下來我們要前往第二關：赤壁的密語...（敬請期待）");
+    }
+</script>
+
+</body>
+</html>
